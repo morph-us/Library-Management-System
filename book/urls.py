@@ -2,8 +2,10 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 
 
-from . import views as views
+#from . import views as views
 
+
+from . import views_without_DRF as views
 
 
 

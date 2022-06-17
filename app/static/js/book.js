@@ -140,7 +140,7 @@ $(document).ready(function () {
         $.ajax({
             enctype: 'multipart/form-data',
             url: path,
-            type: 'PUT',
+            type: 'POST',
             data: formData,
             headers: {'X-CSRFToken': csrftoken},
             processData: false,
@@ -213,7 +213,7 @@ $(document).ready(function () {
                 response = JSON.parse(message);
                 console.log(typeof(response));
                 console.log(response.title);
-                console.log(response['title']);
+                console.log(response['message']);
                 
 
                 if (response.title) {
@@ -239,9 +239,9 @@ $(document).ready(function () {
 
 
                 if(response['message']){
-                    $("#edit-book-form #messageErr").html(response['message']);
+                    $("#edit-book-form #e-messageErr").html(response['message']);
                 } else {
-                    $("#edit-book-form #messageErr").html("");
+                    $("#edit-book-form #e-messageErr").html("");
                 }
              
               
