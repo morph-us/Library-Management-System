@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+
+<style>
+   body {
+      width: 100%;
+      background: url("{% static 'assets/login-back.jpg' %}") no-repeat bottom;
+      background-size: contain;
+   }
+</style>
+
+<script src="{% static 'js/login-signup.js' %}"></script>
+  
+<div class="login-wrapper">
+<form action="" class="form" id="login-form">{%csrf_token%}
+   <h1>Library Management System</h1> 
+   <h2>Admin Login </h2>
+    
+    <div class="form-group">
+       <input type="email" id="email" required>
+       <label for="">Email</label>
+    </div>
+    <p class="error" id="emailErr"></p>
+
+    <div class="form-group">
+       <input type="password" id="password" required>
+       <label for="">Password</label>
+    </div>
+    <p class="error" id="passwordErr"></p>
+
+    <button type="submit" id="login-btn" class="btn">Login</button>
+
+    <div class="link-wrapper">
+       <span>
+          New user?
+          <a href="/signup/" class="link" >    Signup here</a>
+       </span>
+    </div>
+ </form>
+
+
+
+
+<p>{{message}}</p>
+</div>
+
+
+{%endblock%}

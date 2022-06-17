@@ -1,0 +1,199 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+
+
+<style>
+   body {
+      width: 100%;
+      background: url("{% static 'assets/login-back.jpg' %}") no-repeat bottom;
+      background-size: contain;
+   }
+</style>
+
+
+<section class="main_content">
+
+
+<h1 style="float: left">Admin Panel</h1>
+
+<div class="card" style='float: right '>
+   <h5 class="card-header">Current user  : {{user}}</h5>
+   <div class="card-body">
+     <p class="card-text" style="float: right">
+      <a href="/logout" class="btn btn-info btn-lg">
+         Log out
+      </a>
+      </p>
+  
+   </div>
+ </div>
+
+  
+  
+  <div id="bookdata">
+  <table class="table table-success table-striped" style="width:100% ;   margin-top: 10rem ; 
+  margin-right:10rem;"
+   >
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Price</th>
+      <th>Publisher</th>
+      <th></th>
+    </tr>
+    {%for item in books%}
+    <td>{{item.title}}</td>
+    <td>{{item.author}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.publisher}}</td>
+    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbookModal"
+      data-bs-placement="bottom" title="Edit" onclick="fetchbookDetails('{{item.id}}')">
+      <i class="far fa-pen"></i>
+   </button>
+   </td>
+    </tr></a>
+    {%endfor%}
+  </table>
+</div>
+
+  <!-- ? Add book Button -->
+  <button class="add-camera" data-bs-toggle="tooltip" data-bs-placement="left" title="Add book">
+    <div class="modal-btn" data-bs-toggle="modal" data-bs-target="#addbookModal" >
+       <i class="far fa-plus"></i>
+       
+   
+    </div>
+ </button>
+
+
+ <!-- ? Toasts goes here -->
+ <div aria-live="polite" aria-atomic="true" class="position-relative">
+   <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 10"> </div>
+</div>
+
+
+
+  <!-- ? Modals  goes here -->
+  <!-- add book modal -->
+  <div class="modal fade" id="addbookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+       <div class="modal-content">
+          <form action="" id="add-book-form">
+             <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                <div class="form-group">
+                   <div class="control">
+                      <input type="text" class="form-control" name="" id="title" required>
+                      <label for="title">Book Title</label>
+                   </div>
+                   <div class="error" id="titleErr"></div>
+                </div>
+                <div class="form-group">
+                   <div class="control">
+                      <input type="text" class="form-control" name="" id="author" required>
+                      <label for="author">Author</label>
+                   </div>
+                   <div class="error" id="authorErr"></div>
+                </div>
+
+                <div class="form-group">
+                   <div class="control">
+                      <input type="" class="form-control" name="" id="price" required>
+                      <label for="">Price</label>
+                   </div>
+                   <div class="error" id="priceErr"></div>
+                </div>
+
+                <div class="form-group">
+                  <div class="control">
+                     <input type="text" class="form-control" name="" id="publisher" required>
+                     <label for="publisher">Publisher</label>
+                  </div>
+                  <div class="error" id="publisherErr"></div>
+                  <div class="error" id="messageErr"></div>
+               
+               </div>
+                
+               
+
+      
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="add-book-btn">Add Book</button>
+
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>
+ 
+
+
+ <!-- edit book modal -->
+ <div class="modal fade" id="editbookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+      <div class="modal-content">
+         <form action="" id="edit-book-form">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Edit book</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <div class="form-group">
+                  <div class="control">
+                     <input type="text" class="form-control" name="" id="e-title" required>
+                     <label for="e-title">Book Title</label>
+                  </div>
+                  <div class="error" id="e-titleErr"></div>
+
+               </div>
+               <div class="form-group">
+                  <div class="control">
+                     <input type="text" class="form-control" name="" id="e-author" required>
+                     <label for="e-author">Author</label>
+                  </div>
+                  <div class="error" id="e-authorErr"></div>
+               </div>
+               <div class="form-group">
+                  <div class="control">
+                     <input type="number" class="form-control" name="" id="e-price" required>
+                     <label for="e-price">Price</label>
+                  </div>
+                  <div class="error" id="e-priceErr"></div>
+               </div>
+               <div class="form-group">
+                  <div class="control">
+                     <input type="text" class="form-control" name="" id="e-publisher" required>
+                     <label for="e-publisher">Publisher</label>
+                  </div>
+                  <div class="error" id="e-publisherErr"></div>
+                  <div class="error" id="e-messageErr"></div>
+
+               </div>
+            </div>
+
+            <div class="modal-footer">
+               <input type="hidden" name="" id="hiddenid">
+                <button type="button" class="btn btn-secondary" id="delete-book" ><i class="far fa-trash"></i> Delete</button>
+              
+              
+               <!-- <button class="btn btn-danger" id="delete-book" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete Book">Delete Book
+               <i class="far fa-trash"></i>
+                -->
+            </button>
+            
+               <button type="button" class="btn btn-primary" id="edit-book-btn">Update changes</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+</section>
+
+{%endblock%}

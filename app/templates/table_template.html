@@ -1,0 +1,24 @@
+<div id="bookdata">
+  <table class="table table-success table-striped" style="width:100% ;margin-top: 10rem ; 
+  margin-right:10rem" >
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Price</th>
+      <th>Publisher</th>
+      <th></th>
+    </tr>
+    {%for item in books%}
+    <td>{{item.title}}</td>
+    <td>{{item.author}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.publisher}}</td>
+    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbookModal"
+      data-bs-placement="bottom" title="Edit" onclick="fetchbookDetails('{{item.id}}')">
+      <i class="far fa-pen"></i>
+   </button>
+   </td>
+    </tr></a>
+    {%endfor%}
+  </table>
+</div>

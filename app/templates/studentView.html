@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+
+
+<style>
+   body {
+      width: 100%;
+      background: url("{% static 'assets/login-back.jpg' %}") no-repeat bottom;
+      background-size: contain;
+   }
+</style>
+
+
+<section class="main_content">
+
+
+<h1 style="float: left">Books Availabe</h1>
+<div class="card" style='float: right '>
+   <h5 class="card-header">
+       
+      {%if user.is_anonymous%}
+      <p>Current user  : Student</p>
+      {%else %}
+      <p> Current user  :{{user}}</p>
+      {%endif%}
+
+   </h5>
+   <div class="card-body">
+     <p class="card-text" style="float: right">
+      <a href="/login" class="btn btn-info btn-lg">
+         Log in
+      </a>
+      </p>
+  
+   </div>
+ </div>
+
+  
+
+  
+  <div id="bookdata">
+  <table class="table table-success table-striped" style="width:100% ;margin-top: 10rem ; 
+  margin-right:10rem" >
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Price</th>
+      <th>Publisher</th>
+      
+    </tr>
+    {%for item in books%}
+    <td>{{item.title}}</td>
+    <td>{{item.author}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.publisher}}</td>
+    </tr></a>
+    {%endfor%}
+  </table>
+</div>
+
+
+</section>
+
+{%endblock%}

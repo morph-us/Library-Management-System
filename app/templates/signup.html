@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+
+<script src="{% static 'js/login-signup.js' %}"></script>
+  
+<style>
+	body {
+	   width: 100%;
+	   background: url("{% static 'assets/login-back.jpg' %}") no-repeat bottom;
+	   background-size: contain;
+	}
+ </style>
+ 
+
+<br>
+<br>
+
+<!-- <form action='.' method='POST'>{%csrf_token%}
+
+	{{ form.as_p}}
+	<input type="submit" name="Save"/> -->
+
+	<div class="login-wrapper">
+
+<form action="" class="form" id="signup-form">
+		{% csrf_token %}
+		<h1>Library Management System</h1>
+		<h2>Admin Sign Up</h2>
+  
+		<div class="form-group">
+		   <input type="text" id="name" required>
+		   <label for="name">Full Name</label>
+		</div>
+		<p class="error" id="nameErr"></p>
+  
+		<div class="form-group">
+		   <input type="text" id="email" required>
+		   <label for="email">Email</label>
+		</div>
+		<p class="error" id="emailErr"></p>
+  
+		<div class="form-group">
+		   <input type="password" id="password" required>
+		   <label for="password">Password</label>
+		</div>
+		<p class="error" id="passwordErr"></p>
+  
+		<button type="submit" id="signup-btn" class="btn">Signup</button>
+  
+		<div class="link-wrapper-2">
+		   <span>
+			  Already User?
+			  <a href="../" class="link">Login here</a>
+		   </span>
+		</div>
+	 </form>
+  
+	
+
+</div>
+
+
+{%endblock%}
