@@ -20,6 +20,25 @@ This project also has other branch (**without_DRF**) which also uses RESTful api
 
 RESTful API for operations on Model Book using Django REST framework
 
+Note : some endpoints require authentications so cannot be directly tested on Post man.
+
+You need to generate auth token to test API on POSTMAN. 
+
+This project can generate auth token to test api
+
+Following are steps to generate auth token.
+
+1.Login to your account. https://cryptic-brushlands-35629.herokuapp.com/login/
+
+2.visit endpoint **/auth/**  like: https://cryptic-brushlands-35629.herokuapp.com/auth/
+
+3.copy the token value
+
+4.create following Authorization header in Postman request: **Authorization : Token token_value**
+
+5.Now your postman request is authorized.
+
+
 ### endpoint: /api/book/
 Operation : create Book or Retrieve all books
 
